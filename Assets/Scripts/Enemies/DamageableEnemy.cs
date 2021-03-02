@@ -12,7 +12,7 @@ public class DamageableEnemy : MonoBehaviour
     {
         health = maxHealth;
         transform.GetChild(0).gameObject.SetActive(true);   // activate health canvas in gameplay
-        healthBar = transform.GetComponentInChildren<HealthBar>(); // get health bar image
+        healthBar = gameObject.GetComponentInChildren<HealthBar>(); // get health bar image
     }
 
     public void Damage(int damageAmount)

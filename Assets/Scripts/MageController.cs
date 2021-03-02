@@ -10,7 +10,10 @@ public class MageController : MonoBehaviour
     private float spellCooldown;
     public const float maxLightningCooldown = 2f;
     private float lightningCooldown;
+    
+    //temp 
     private int counter = 0;
+    private bool alpha2Pressed = false;
     public float directionAngle
     {
         get { return Mathf.Atan2(player.LookDirecton.y, player.LookDirecton.x) * Mathf.Rad2Deg; }
@@ -52,6 +55,7 @@ public class MageController : MonoBehaviour
 
     public void ListenAbilities()
     {
+        // Instant use of first ability when Key down
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (lightningCooldown <= 0)
@@ -63,7 +67,7 @@ public class MageController : MonoBehaviour
                 transform.position, 
                 Quaternion.AngleAxis( directionAngle, Vector3.forward ) ) as GameObject;
 
-                lightning.transform.SetParent(gameObject.transform, false);
+                lightning.transform.SetParent(this.gameObject.transform, false);
                 lightning.transform.position = transform.position + (Vector3) player.LookDirecton;
 
                 if (counter == 3) 
@@ -72,6 +76,57 @@ public class MageController : MonoBehaviour
                     counter = 0;
                 }
             }
+        }
+
+        // Create circle of projectiles 
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            if (alpha2Pressed != true) // if button is pressed in first time
+            {
+                alpha2Pressed = true; // fix pressing and implement code
+                float angle = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    SpawnProjectileAsChild(angle, 12);
+                    angle += 45;
+                }
+                Debug.Log("Implemented function of pressing");
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            alpha2Pressed = false;
+            LaunchSpellCircle();
+        }
+
+    }
+
+    private void SpawnProjectile(float angle, int radius)
+    {
+        Vector2 spawnPosition = new Vector3();
+        Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.up;
+        spawnPosition = transform.position + direction * radius;
+        Instantiate(Resources.Load("Spell"), spawnPosition, Quaternion.identity);
+    }
+
+    private void SpawnProjectileAsChild(float angle, int radius)
+    {
+        Vector2 spawnPosition = new Vector3();
+        Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.up;
+        GameObject projectile = Instantiate(Resources.Load("ASpell"), transform.position, Quaternion.identity) 
+        as GameObject;
+        projectile.transform.SetParent(this.gameObject.transform, false);
+        projectile.transform.position = transform.position + direction * radius;
+    }
+
+    // VULNERABLE SCRIPT, IF YOU ADD CHILD TO MAGE GameObj, CHAGE FOR CYCLE "i < ?"
+    private void LaunchSpellCircle()
+    {
+        for (int i = 1; i < gameObject.transform.childCount; i++) // can create two, becayse we have health bar
+        {
+            if ( gameObject.transform.GetChild(i).GetComponent<AProjectile>() != null)
+                gameObject.transform.GetChild(i).GetComponent<AProjectile>().SetDirection(player.LookDirecton);
         }
     }
 
