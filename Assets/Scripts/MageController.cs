@@ -6,7 +6,7 @@ public class MageController : MonoBehaviour
 {
     public static MageController staticController;
     private PlayerController player;
-    public const float maxSpellCooldown = 0.4f;
+    public const float maxSpellCooldown = 0.45f;
     private float spellCooldown;
     public const float maxLightningCooldown = 2f;
     private float lightningCooldown;
@@ -32,8 +32,8 @@ public class MageController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (spellCooldown >= 0) spellCooldown -= Time.fixedDeltaTime;
-        if (lightningCooldown >= 0) lightningCooldown -= Time.fixedDeltaTime;
+        if (spellCooldown > 0) spellCooldown -= Time.fixedDeltaTime;
+        if (lightningCooldown > 0) lightningCooldown -= Time.fixedDeltaTime;
 
         // listen fire input
         if (Input.GetButton("Fire1"))
@@ -81,7 +81,7 @@ public class MageController : MonoBehaviour
         // Create circle of projectiles 
         if (Input.GetKey(KeyCode.Alpha2))
         {
-            if (alpha2Pressed != true) // if button is pressed in first time
+            if (alpha2Pressed != true) // if the button is not pressed already ()
             {
                 alpha2Pressed = true; // fix pressing and implement code
                 float angle = 0;
