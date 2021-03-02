@@ -42,8 +42,14 @@ public class Skeleton : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) 
+     private void OnCollisionEnter2D(Collision2D other) 
     {
-        if ( other.gameObject.CompareTag("PlayerWizard") ) SceneManager.LoadScene("Level1");
-    }
+        //
+        if ( other.gameObject.CompareTag("Player") )
+        {
+            
+            Debug.Log("Skeleton Hit: " + other.gameObject);
+        }   
+          /*SceneManager.LoadScene("Level1"); */
+    } 
 }

@@ -31,8 +31,9 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "PlayerWizard")
+        if (other.tag == "Player")
         {
+            Debug.Log("Necro Hit: " + other.gameObject);
             // deal some dagame
             Destroy(this.gameObject);
         }

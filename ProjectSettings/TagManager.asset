@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - Projectile
   - DestructibleEnemy
+  - PlayerWarrior
   layers:
   - Default
   - TransparentFX

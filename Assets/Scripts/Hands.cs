@@ -29,7 +29,7 @@ public class Hands : MonoBehaviour
             if (other.tag == "Enemy")
             {
                 other.GetComponent<Skeleton>().speed = 0;
-                other.GetComponent<Destructible>().Damage();
+                other.GetComponent<DamageableEnemy>().Damage(1);
                 Debug.Log("HIT!");
                 other.GetComponent<Rigidbody2D>().AddForce(mouseLookDirection * 100, ForceMode2D.Impulse);
                 Debug.DrawRay(other.GetComponent<Skeleton>().transform.position, mouseLookDirection, Color.blue);

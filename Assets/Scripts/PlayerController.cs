@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController staticController;
-    private Camera internalCam;
 
     public float speed;
     Rigidbody2D rigidbody2d;
@@ -23,7 +22,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-        internalCam = GetComponentInChildren<Camera>();
         staticController = this;
     }
 

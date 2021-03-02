@@ -24,7 +24,7 @@ public class LeftHandController : MonoBehaviour
 //--------------------------------------------------------------------------------------
     private Ray mouseRayCast;
     private Vector3 target;
-    public Vector2 mouseLookDirection2 { get => mouseLookDirection2; private set => mouseLookDirection2 = value; }
+    public Vector2 mouseLookDirection2;
 
 //--------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ public class LeftHandController : MonoBehaviour
 //--------------------------------------------------------------------------------------
     private void Attack()
     {
-        if (Input.GetButtonDown("Fire1")) 
+        if (Input.GetButton("Fire1")) 
         {
             RightHandController.IsCalm = false;
         }
