@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - PlayerWizard
+  - Enemy
+  - Item
+  - Wall
+  - Projectile
+  - DestructibleEnemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Projectiles
+  - Enemies
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: PressurePlates
+    uniqueID: 771595705
+    locked: 0
+  - name: Doors
+    uniqueID: 3429237015
+    locked: 0
+  - name: Walls
+    uniqueID: 3298451571
+    locked: 0
+  - name: Items
+    uniqueID: 3212394539
+    locked: 0
+  - name: Enemies
+    uniqueID: 3775506789
+    locked: 0
+  - name: Player
+    uniqueID: 2307830111
+    locked: 0
+  - name: Projectiles
+    uniqueID: 2732409299
+    locked: 0
+  - name: GUI
+    uniqueID: 2744101245
+    locked: 0
