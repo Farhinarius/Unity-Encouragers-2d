@@ -77,7 +77,7 @@ public class LeftHandController : MonoBehaviour
 //--------------------------------------------------------------------------------------
     private void Attack()
     {
-        if (Input.GetButton("Fire1")) 
+        if (Input.GetButtonDown("Fire1")) 
         {
             RightHandController.IsCalm = false;
         }
@@ -106,7 +106,7 @@ public class LeftHandController : MonoBehaviour
         {
 
             if ( (transform.position != HandAttackPosition) && (LightAttacked == false) )
-            {
+            {   
                 transform.position = Vector2.MoveTowards(HandRegularPosition, HandAttackPosition, destinationStart);
                 destinationStart += Time.deltaTime * 75;
             }
@@ -123,12 +123,15 @@ public class LeftHandController : MonoBehaviour
                 transform.position = Vector2.MoveTowards(HandAttackPosition, HandRegularPosition, destinationEnd);
                 destinationEnd += Time.deltaTime * 75;
                 
+                
                 if (transform.position == HandRegularPosition)
                 {
                     RightHandController.IsCalm = true;
                     LightAttacked = false;
                     HandBack = false;
                     RightHandController.OperateHand = 0;
+                    destinationStart = 0f;
+                    destinationEnd = 0f;
                 }
             }
         }

@@ -108,7 +108,8 @@ public class RightHandController : MonoBehaviour
     {
         if ( (IsCalm == false) && (OperateHand == 0) )
         {
-            if ( (transform.position != HandAttackPosition) && (LightAttacked == false) )
+
+            if ( (transform.position != HandAttackPosition) && (LightAttacked == false) )  
             {
                 transform.position = Vector2.MoveTowards(HandRegularPosition, HandAttackPosition, destinationStart);
                 destinationStart += Time.deltaTime * 75;
@@ -132,6 +133,8 @@ public class RightHandController : MonoBehaviour
                     LightAttacked = false;
                     HandBack = false;
                     OperateHand = 1;
+                    destinationStart = 0f;
+                    destinationEnd = 0f;
                 }
             }
         }

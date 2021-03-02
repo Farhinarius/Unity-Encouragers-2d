@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerH: {fileID: 4950174257142681788}
+  mouseLookDirection2: {x: 0, y: 0}
 --- !u!114 &2868610331605823329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,18 +271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerT: {fileID: 4950174257142681788}
---- !u!114 &3963360853642107445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8209561672098612859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d040608bf8d34f41a78a6197f9ffeff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &976882048458521192
 PrefabInstance:
   m_ObjectHideFlags: 0
