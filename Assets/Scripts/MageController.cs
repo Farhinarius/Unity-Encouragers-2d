@@ -10,6 +10,10 @@ public class MageController : MonoBehaviour
     private float spellCooldown;
     public const float maxLightningCooldown = 2f;
     private float lightningCooldown;
+    public const float maxSpellCircleCooldown = 4f;
+    private float spellCircleCooldown;
+    public const float maxDefenseCooldown = 5f;
+    private float defenseCooldown;
     
     //temp 
     private int counter = 0;
@@ -34,7 +38,10 @@ public class MageController : MonoBehaviour
     {
         if (spellCooldown > 0) spellCooldown -= Time.fixedDeltaTime;
         if (lightningCooldown > 0) lightningCooldown -= Time.fixedDeltaTime;
+        if (spellCircleCooldown > 0) spellCircleCooldown -= Time.fixedDeltaTime;
+        if (defenseCooldown > 0) defenseCooldown -= Time.fixedDeltaTime;
 
+        Debug.Log("Spell Circle cooldown " + spellCircleCooldown);
         // listen fire input
         if (Input.GetButton("Fire1"))
         {
@@ -55,7 +62,7 @@ public class MageController : MonoBehaviour
 
     public void ListenAbilities()
     {
-        // Instant use of first ability when Key down
+        // FIRST ABILITY (instant lighting)
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (lightningCooldown <= 0)
@@ -78,30 +85,30 @@ public class MageController : MonoBehaviour
             }
         }
 
-        // Create circle of projectiles 
+        // SECOND ABILITY (circle of projectiles) 
         if (Input.GetKey(KeyCode.Alpha2))
         {
-            if (alpha2Pressed != true) // if the button is not pressed already ()
+            if (spellCircleCooldown <= 0 && alpha2Pressed != true) // if the button is not pressed already and cooldown passed
             {
-                alpha2Pressed = true; // fix pressing and implement code
+                alpha2Pressed = true; // fix pressing (button bressed) and implement code below one time
                 float angle = 0;
                 for (int i = 0; i < 8; i++)
                 {
                     SpawnProjectileAsChild(angle, 12);
                     angle += 45;
                 }
+                spellCircleCooldown = maxSpellCircleCooldown;
                 Debug.Log("Implemented function of pressing");
             }
         }
-
-        if (Input.GetKeyUp(KeyCode.Alpha2))
+        else if (Input.GetKeyUp(KeyCode.Alpha2))
         {
             alpha2Pressed = false;
             LaunchSpellCircle();
         }
 
-        // Instantiate defense
-
+        // THIRD ABILITY (defense circle) add
+    
 
     }
 

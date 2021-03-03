@@ -38,7 +38,6 @@ public class AProjectile : MonoBehaviour
     {
         var step = speed * Time.fixedDeltaTime;
         _transfrom.position += direction * step;
-        Debug.Log("spell casting!");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
