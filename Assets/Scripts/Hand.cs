@@ -26,13 +26,13 @@ public class Hand : MonoBehaviour
             if (other.tag == "Enemy")
             {
                 other.GetComponent<DamageableEnemy>().Damage(1);
-                other.GetComponent<Rigidbody2D>().AddForce(player.LookDirecton * 1000, ForceMode2D.Impulse);
+                other.GetComponent<Rigidbody2D>().AddForce(player.LookDirection * 1000, ForceMode2D.Impulse);
 
             }
             else if (other.tag == "Item")
             {
                 other.GetComponent<Destructible>().Damage();
-                other.GetComponent<Rigidbody2D>().AddForce(player.LookDirecton*1000, ForceMode2D.Impulse);
+                other.GetComponent<Rigidbody2D>().AddForce(player.LookDirection*1000, ForceMode2D.Impulse);
 
 
             }

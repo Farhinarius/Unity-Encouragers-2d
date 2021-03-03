@@ -76,8 +76,8 @@ public class HandsController : MonoBehaviour
 
     private void MouseLookDirection()
     {
-        
-        mouseRayCast = new Ray(transform.position, player.LookDirecton);
+
+        mouseRayCast = new Ray(transform.position, player.LookDirection);
         handAttackPosition = mouseRayCast.GetPoint(7);
     } 
 
