@@ -46,5 +46,9 @@ public class EnemyProjectile : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        else if (other.tag == "Projectile")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

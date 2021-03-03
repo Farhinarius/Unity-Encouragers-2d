@@ -12,7 +12,7 @@ public class MageController : MonoBehaviour
     private float lightningCooldown;
     public const float maxSpellCircleCooldown = 4f;
     private float spellCircleCooldown;
-    public const float maxDefenseCooldown = 5f;
+    public const float maxDefenseCooldown = 8f;
     private float defenseCooldown;
     
     //temp 
@@ -36,12 +36,11 @@ public class MageController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // add UI request to show all this values in UI
         if (spellCooldown > 0) spellCooldown -= Time.fixedDeltaTime;
         if (lightningCooldown > 0) lightningCooldown -= Time.fixedDeltaTime;
         if (spellCircleCooldown > 0) spellCircleCooldown -= Time.fixedDeltaTime;
         if (defenseCooldown > 0) defenseCooldown -= Time.fixedDeltaTime;
-
-        Debug.Log("Spell Circle cooldown " + spellCircleCooldown);
         // listen fire input
         if (Input.GetButton("Fire1"))
         {
@@ -67,10 +66,10 @@ public class MageController : MonoBehaviour
         {
             if (lightningCooldown <= 0)
             {
-                // call UI for storing number of remained spells
+                // make UI request for storing number of remained spells 
                 counter++;
             
-                GameObject lightning = Instantiate(Resources.Load("Lightning"),
+                GameObject lightning = Instantiate( Resources.Load("Lightning"),
                 transform.position, 
                 Quaternion.AngleAxis( directionAngle, Vector3.forward ) ) as GameObject;
 
@@ -108,6 +107,20 @@ public class MageController : MonoBehaviour
         }
 
         // THIRD ABILITY (defense circle) add
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (defenseCooldown <= 0)
+            {
+                GameObject defenseCircle = Instantiate(Resources.Load("DefenceCircle"),
+                transform.position, 
+                Quaternion.identity) as GameObject;
+                defenseCircle.transform.SetParent(this.gameObject.transform, false);
+                defenseCircle.transform.position = transform.position;
+                GetComponent<Rigidbody2D>().mass = 5000; //unmovable
+
+                defenseCooldown = maxDefenseCooldown;
+            }
+        }
     
 
     }
@@ -122,7 +135,7 @@ public class MageController : MonoBehaviour
         projectile.transform.position = transform.position + direction * radius;
     }
 
-    // VULNERABLE SCRIPT, IF YOU ADD CHILD TO MAGE GameObj, CHAGE FOR CYCLE "i < ?"
+    // VULNERABLE SCRIPT, IF YOU ADD CHILD TO MAGE GameObj, CHAGE FOR CYCLE "i < NEW_VALUE"
     private void LaunchSpellCircle()
     {
         for (int i = 1; i < gameObject.transform.childCount; i++) // can create two, becayse we have health bar
