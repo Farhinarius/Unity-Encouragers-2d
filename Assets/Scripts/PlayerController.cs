@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 movement;
     private Vector2 mouseTarget;
     public Vector2 interactiveRayLength = new Vector2(1.5f, 1.5f);
-    public Vector2 LookDirecton
+    public Vector2 LookDirection
     {
         get { return lookDirection; }
     }

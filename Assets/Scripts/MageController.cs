@@ -6,7 +6,7 @@ public class MageController : MonoBehaviour
 {
     public static MageController staticController;
     private PlayerController player;
-    public const float maxSpellCooldown = 0.45f;
+    public const float maxSpellCooldown = 0.3f;
     private float spellCooldown;
     public const float maxLightningCooldown = 2f;
     private float lightningCooldown;
@@ -16,7 +16,7 @@ public class MageController : MonoBehaviour
     private bool alpha2Pressed = false;
     public float directionAngle
     {
-        get { return Mathf.Atan2(player.LookDirecton.y, player.LookDirecton.x) * Mathf.Rad2Deg; }
+        get { return Mathf.Atan2(player.LookDirection.y, player.LookDirection.x) * Mathf.Rad2Deg; }
     }
 
     private void Start() 
@@ -48,7 +48,7 @@ public class MageController : MonoBehaviour
         {
             GameObject projectile = Instantiate(Resources.Load("Spell"), transform.position, Quaternion.identity) 
             as GameObject;
-            projectile.GetComponent<Projectile>().SetDirection(player.LookDirecton);
+            projectile.GetComponent<Projectile>().SetDirection(player.LookDirection);
             spellCooldown = maxSpellCooldown;
         }
     }
@@ -68,7 +68,7 @@ public class MageController : MonoBehaviour
                 Quaternion.AngleAxis( directionAngle, Vector3.forward ) ) as GameObject;
 
                 lightning.transform.SetParent(this.gameObject.transform, false);
-                lightning.transform.position = transform.position + (Vector3) player.LookDirecton;
+                lightning.transform.position = transform.position + (Vector3) player.LookDirection;
 
                 if (counter == 3) 
                 {
@@ -100,14 +100,9 @@ public class MageController : MonoBehaviour
             LaunchSpellCircle();
         }
 
-    }
+        // Instantiate defense
 
-    private void SpawnProjectile(float angle, int radius)
-    {
-        Vector2 spawnPosition = new Vector3();
-        Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.up;
-        spawnPosition = transform.position + direction * radius;
-        Instantiate(Resources.Load("Spell"), spawnPosition, Quaternion.identity);
+
     }
 
     private void SpawnProjectileAsChild(float angle, int radius)
@@ -125,8 +120,9 @@ public class MageController : MonoBehaviour
     {
         for (int i = 1; i < gameObject.transform.childCount; i++) // can create two, becayse we have health bar
         {
-            if ( gameObject.transform.GetChild(i).GetComponent<AProjectile>() != null)
-                gameObject.transform.GetChild(i).GetComponent<AProjectile>().SetDirection(player.LookDirecton);
+            AProjectile aprojComponent = gameObject.transform.GetChild(i).GetComponent<AProjectile>();
+            if ( aprojComponent != null)
+                aprojComponent.SetDirection(player.LookDirection);
         }
     }
 
