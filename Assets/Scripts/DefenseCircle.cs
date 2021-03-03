@@ -16,11 +16,16 @@ public class DefenseCircle : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnDisable() {
+        Debug.Log("Destroy cicrle");
+        GetComponentInParent<Rigidbody2D>().mass = 1;
+    }
+
+/*     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Enemy" || other.tag == "Projectile")
         {
             gameObject.GetComponent<EdgeCollider2D>().isTrigger = false;
         }
-    }
+    } */
 }

@@ -14,9 +14,12 @@ public class MageController : MonoBehaviour
     private float spellCircleCooldown;
     public const float maxDefenseCooldown = 8f;
     private float defenseCooldown;
+    public const float maxBlastCooldown = 0.1f;
+    private float blastCooldown;
     
     //temp 
-    private int counter = 0;
+    private int lightningCounter = 0;
+    private int blastCounter = 0;
     private bool alpha2Pressed = false;
     public float directionAngle
     {
@@ -41,6 +44,8 @@ public class MageController : MonoBehaviour
         if (lightningCooldown > 0) lightningCooldown -= Time.fixedDeltaTime;
         if (spellCircleCooldown > 0) spellCircleCooldown -= Time.fixedDeltaTime;
         if (defenseCooldown > 0) defenseCooldown -= Time.fixedDeltaTime;
+        if (blastCooldown > 0) blastCooldown -= Time.fixedDeltaTime;
+        
         // listen fire input
         if (Input.GetButton("Fire1"))
         {
@@ -67,7 +72,7 @@ public class MageController : MonoBehaviour
             if (lightningCooldown <= 0)
             {
                 // make UI request for storing number of remained spells 
-                counter++;
+                lightningCounter++;
             
                 GameObject lightning = Instantiate( Resources.Load("Lightning"),
                 transform.position, 
@@ -76,10 +81,10 @@ public class MageController : MonoBehaviour
                 lightning.transform.SetParent(this.gameObject.transform, false);
                 lightning.transform.position = transform.position + (Vector3) player.LookDirection;
 
-                if (counter == 3) 
+                if (lightningCounter == 3) 
                 {
                     lightningCooldown = maxLightningCooldown;
-                    counter = 0;
+                    lightningCounter = 0;
                 }
             }
         }
@@ -116,10 +121,34 @@ public class MageController : MonoBehaviour
                 Quaternion.identity) as GameObject;
                 defenseCircle.transform.SetParent(this.gameObject.transform, false);
                 defenseCircle.transform.position = transform.position;
-                GetComponent<Rigidbody2D>().mass = 5000; //unmovable
+                GetComponent<Rigidbody2D>().mass = 5000; //unmovable defense circle
 
                 defenseCooldown = maxDefenseCooldown;
             }
+        }
+
+        // FOURTH ABILITY (ultra blast with projectiles)
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (blastCooldown <= 0)
+            {
+                while (blastCounter < 100)
+                {
+                    blastCounter++;
+                    GameObject projectile = Instantiate(Resources.Load("Spell"), 
+                    transform.position,
+                    Quaternion.identity) as GameObject;
+                    projectile.GetComponent<Projectile>().SetDirection(player.LookDirection);
+                    projectile.transform.position += (Vector3) (player.LookDirection * blastCounter) 
+                    + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f));
+                    projectile.GetComponent<Projectile>().SetSpeed(15);
+                }
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha4))
+        {
+            blastCooldown = maxBlastCooldown;
+            blastCounter = 0;
         }
     
 
