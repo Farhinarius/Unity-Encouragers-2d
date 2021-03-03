@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5800382327606568145}
   - component: {fileID: 5800382327606568144}
   - component: {fileID: 5800382327606568147}
-  - component: {fileID: 3101877530514500858}
+  - component: {fileID: 7493635852234733869}
   m_Layer: 8
   m_Name: LeftHand
   m_TagString: Projectile
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fb139517d5414664786fcbafa62666d9, type: 3}
-  m_Color: {r: 0.56766504, g: 0.3443396, b: 1, a: 1}
+  m_Color: {r: 0.9294118, g: 0.82745105, b: 0.6392157, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3101877530514500858
+--- !u!114 &7493635852234733869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,9 +141,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5800382327606568146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43027d75409b9a646975f9d1ef9ba673, type: 3}
+  m_Script: {fileID: 11500000, guid: 14ceef674abf8a34a9c65a78b526ee84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  angle: 0
-  direction: {x: 0, y: 0}
