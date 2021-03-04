@@ -14,7 +14,7 @@ public class MageController : MonoBehaviour
     private float spellCircleCooldown;
     public const float maxDefenseCooldown = 8f;
     private float defenseCooldown;
-    public const float maxBlastCooldown = 0.1f;
+    public const float maxBlastCooldown = 12f;
     private float blastCooldown;
     
     //temp 
@@ -26,9 +26,60 @@ public class MageController : MonoBehaviour
         get { return Mathf.Atan2(player.LookDirection.y, player.LookDirection.x) * Mathf.Rad2Deg; }
     }
 
+    // properties for UI
+    public float getLightningCooldown 
+    { 
+        get 
+        { 
+            if (lightningCooldown <= 0)
+                return 0;
+            else
+            {
+                return lightningCooldown;
+            }
+        } 
+    }
+    public float getSpellCircleCooldown 
+    {
+        get 
+        {
+            if (spellCircleCooldown <= 0)
+                return 0;
+            else
+            {
+                return spellCircleCooldown;
+            }
+        }
+    }
+    public float getDefenseCooldown
+    {
+        get
+        {
+            if (defenseCooldown <= 0)
+                return 0;
+            else
+            {
+                return defenseCooldown;
+            }
+        }
+    }
+    public float getBlastCooldown
+    {
+        get
+        {
+            if (blastCooldown <= 0)
+                return 0;
+            else
+            {
+                return blastCooldown;
+            }
+        }
+    }
+
     private void Start() 
     {
         player = gameObject.GetComponent<PlayerController>();
+        staticController = this;
     }
 
     // Update is called once per frame
