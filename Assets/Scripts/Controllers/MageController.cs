@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class MageController : MonoBehaviour
 {
+    // controllers
     public static MageController staticController;
     private PlayerController player;
+
+    // cooldown timers
     public const float maxSpellCooldown = 0.3f;
     private float spellCooldown;
     public const float maxLightningCooldown = 2f;
@@ -16,6 +19,11 @@ public class MageController : MonoBehaviour
     private float defenseCooldown;
     public const float maxBlastCooldown = 12f;
     private float blastCooldown;
+
+    // mana values
+    public int maxManaValue;
+    private ManaBar manaBar;
+    public float manaRegenValue;
     
     //temp 
     private int lightningCounter = 0;
@@ -76,10 +84,12 @@ public class MageController : MonoBehaviour
         }
     }
 
+    // initial behaviour
     private void Start() 
     {
         player = gameObject.GetComponent<PlayerController>();
         staticController = this;
+        manaBar = ManaBar.staticBar;
     }
 
     // Update is called once per frame
@@ -102,15 +112,24 @@ public class MageController : MonoBehaviour
         {
             LaunchProjectile();
         }
+
+        GradualManaRestoration();
+    }
+
+    private void GradualManaRestoration()
+    {
+        if (manaBar.GetManaBarValue() != maxManaValue)
+            manaBar.SetManaBarValue(manaBar.GetManaBarValue() + manaRegenValue / maxManaValue);
     }
 
     private void LaunchProjectile()
     {
-        if (spellCooldown <= 0)
+        if (spellCooldown <= 0 && manaBar.GetManaBarValue() >= 2f / maxManaValue )
         {
             GameObject projectile = Instantiate(Resources.Load("Spell"), transform.position, Quaternion.identity) 
             as GameObject;
             projectile.GetComponent<Projectile>().SetDirection(player.LookDirection);
+            manaBar.SetManaBarValue(manaBar.GetManaBarValue() - 2f/maxManaValue);
             spellCooldown = maxSpellCooldown;
         }
     }
@@ -120,7 +139,7 @@ public class MageController : MonoBehaviour
         // FIRST ABILITY (instant lighting)
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (lightningCooldown <= 0)
+            if (lightningCooldown <= 0 && manaBar.GetManaBarValue() >= 5f / maxManaValue)
             {
                 // make UI request for storing number of remained spells 
                 lightningCounter++;
@@ -131,7 +150,8 @@ public class MageController : MonoBehaviour
 
                 lightning.transform.SetParent(this.gameObject.transform, false);
                 lightning.transform.position = transform.position + (Vector3) player.LookDirection;
-
+                
+                manaBar.SetManaBarValue(manaBar.GetManaBarValue() - 5f / maxManaValue); // using mana for the first ability 
                 if (lightningCounter == 3) 
                 {
                     lightningCooldown = maxLightningCooldown;
@@ -143,7 +163,8 @@ public class MageController : MonoBehaviour
         // SECOND ABILITY (circle of projectiles) 
         if (Input.GetKey(KeyCode.Alpha2))
         {
-            if (spellCircleCooldown <= 0 && alpha2Pressed != true) // if the button is not pressed already and cooldown passed
+            // if the button is not pressed already and cooldown passed (alpha2Pressed == false)
+            if (spellCircleCooldown <= 0 && alpha2Pressed != true && manaBar.GetManaBarValue() >= 15f / maxManaValue )
             {
                 alpha2Pressed = true; // fix pressing (button bressed) and implement code below one time
                 float angle = 0;
@@ -152,6 +173,8 @@ public class MageController : MonoBehaviour
                     SpawnProjectileAsChild(angle, 12);
                     angle += 45;
                 }
+                
+                manaBar.SetManaBarValue(manaBar.GetManaBarValue() - 15f / maxManaValue); // using mana for the second ability
                 spellCircleCooldown = maxSpellCircleCooldown;
                 Debug.Log("Implemented function of pressing");
             }
@@ -162,18 +185,21 @@ public class MageController : MonoBehaviour
             LaunchSpellCircle();
         }
 
-        // THIRD ABILITY (defense circle) add
+        // THIRD ABILITY (defense circle)
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if (defenseCooldown <= 0)
+            if (defenseCooldown <= 0 && manaBar.GetManaBarValue() >= 10f / maxManaValue)
             {
                 GameObject defenseCircle = Instantiate(Resources.Load("DefenceCircle"),
                 transform.position, 
                 Quaternion.identity) as GameObject;
+
                 defenseCircle.transform.SetParent(this.gameObject.transform, false);
                 defenseCircle.transform.position = transform.position;
-                GetComponent<Rigidbody2D>().mass = 5000; //unmovable defense circle
 
+                GetComponent<Rigidbody2D>().mass = 5000; //unmovable defense circle
+                
+                manaBar.SetManaBarValue(manaBar.GetManaBarValue() - 10f / maxManaValue); // using mana for third ability
                 defenseCooldown = maxDefenseCooldown;
             }
         }
@@ -181,19 +207,24 @@ public class MageController : MonoBehaviour
         // FOURTH ABILITY (ultra blast with projectiles)
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            if (blastCooldown <= 0)
+            if (blastCooldown <= 0 && manaBar.GetManaBarValue() >= 40f / maxManaValue)
             {
+                Debug.Log("Instantiate, please");
                 while (blastCounter < 100)
                 {
                     blastCounter++;
                     GameObject projectile = Instantiate(Resources.Load("Spell"), 
                     transform.position,
                     Quaternion.identity) as GameObject;
+
                     projectile.GetComponent<Projectile>().SetDirection(player.LookDirection);
+
                     projectile.transform.position += (Vector3) (player.LookDirection * blastCounter) 
                     + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f));
+                
                     projectile.GetComponent<Projectile>().SetSpeed(15);
                 }
+                manaBar.SetManaBarValue(manaBar.GetManaBarValue() - 40f / maxManaValue); // using mana for fourth ability
             }
         }
         else if (Input.GetKeyUp(KeyCode.Alpha4))
