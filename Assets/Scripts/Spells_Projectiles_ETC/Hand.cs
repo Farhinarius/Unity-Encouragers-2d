@@ -6,14 +6,12 @@ public class Hand : MonoBehaviour
 {
     public PlayerController player;
     private BoxCollider2D handCollider;
-    private bool handAttackCheck;
     private float iFrameTime;
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponentInParent<PlayerController>();
         handCollider = GetComponent<BoxCollider2D>();
-        handAttackCheck = false;
         iFrameTime = 0f;
     }
 
