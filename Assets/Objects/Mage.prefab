@@ -243,3 +243,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d52d5a6d19bd743439706f381e7cb283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxManaValue: 100
+  manaRegenValue: 0.01
