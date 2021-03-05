@@ -17,7 +17,7 @@ public class HandsController : MonoBehaviour
     private int operateHand;
     private bool handBack;
     private bool lightAttacked;
-    private Ray mouseRayCast;
+    public Ray mouseRayCast;
     // Start is called before the first frame update
     void Start()
     {
