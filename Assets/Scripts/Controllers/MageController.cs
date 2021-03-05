@@ -225,11 +225,11 @@ public class MageController : MonoBehaviour
                     projectile.GetComponent<Projectile>().SetSpeed(15);
                 }
                 manaBar.SetManaBarValue(manaBar.GetManaBarValue() - 40f / maxManaValue); // using mana for fourth ability
+                blastCooldown = maxBlastCooldown;
             }
         }
         else if (Input.GetKeyUp(KeyCode.Alpha4))
         {
-            blastCooldown = maxBlastCooldown;
             blastCounter = 0;
         }
     
