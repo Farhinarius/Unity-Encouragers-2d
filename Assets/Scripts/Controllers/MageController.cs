@@ -95,6 +95,11 @@ public class MageController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButton("Fire1"))
+        {
+            LaunchProjectile();
+            Debug.Log("FIRE!");
+        }
         ListenAbilities();
     }
 
@@ -107,12 +112,6 @@ public class MageController : MonoBehaviour
         if (defenseCooldown > 0) defenseCooldown -= Time.fixedDeltaTime;
         if (blastCooldown > 0) blastCooldown -= Time.fixedDeltaTime;
         
-        // listen fire input
-        if (Input.GetButton("Fire1"))
-        {
-            LaunchProjectile();
-        }
-
         GradualManaRestoration();
     }
 

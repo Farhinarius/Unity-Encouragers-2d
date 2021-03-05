@@ -481,6 +481,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38cc8970491cfba4fa89a32fcaff06a1, type: 3}
+--- !u!114 &218092366 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 218092366, guid: cf8ff66c0350e094eb1343eb31c242ee, type: 3}
+  m_PrefabInstance: {fileID: 6065359820179564322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c141b26be6d726b42839e9bdeafaca47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &230639312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3661,6 +3672,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 985256577, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 218092366}
     - target: {fileID: 170039647361208380, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
       propertyPath: m_Name
       value: Mage
@@ -3708,18 +3723,6 @@ PrefabInstance:
     - target: {fileID: 170039647361208382, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 170039647361208383, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 837bb095f0d136e44a81e14332bbf9ec, type: 3}
-    - target: {fileID: 8627410688829725609, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
-      propertyPath: m_UseAutoMass
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8627410688829725609, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
-      propertyPath: m_Mass
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}

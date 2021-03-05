@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Skeleton : MonoBehaviour
 {
@@ -42,14 +41,13 @@ public class Skeleton : MonoBehaviour
         }
     }
 
-     private void OnCollisionEnter2D(Collision2D other) 
+    private void OnCollisionEnter2D(Collision2D other) 
     {
         //
         if ( other.gameObject.CompareTag("Player") )
         {
-            
             Debug.Log("Skeleton Hit: " + other.gameObject);
-        }   
-          /*SceneManager.LoadScene("Level1"); */
+            PlayerController.staticController.GetComponent<DamageablePlayer>().Damage(25);
+        }
     } 
 }

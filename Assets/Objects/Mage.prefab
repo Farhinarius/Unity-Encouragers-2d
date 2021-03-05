@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 8627410688829725609}
   - component: {fileID: 7940991764857992635}
   - component: {fileID: 170039647291700507}
+  - component: {fileID: 985256577}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Player
@@ -245,3 +246,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxManaValue: 100
   manaRegenValue: 0.01
+--- !u!114 &985256577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170039647361208380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0fc77e1e227604f91fa49b798ad9e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthRegenValue: 0.005
+  healthBar: {fileID: 0}
