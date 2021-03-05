@@ -13,7 +13,6 @@ public class DamageablePlayer : MonoBehaviour
     void Start()
     {
         health = (int) maxHealth;
-        transform.GetChild(0).gameObject.SetActive(true);   // activate health canvas in gameplay
     }
 
     public void Damage(int damageAmount)
