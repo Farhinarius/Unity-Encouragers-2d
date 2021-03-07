@@ -233,6 +233,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   interactiveRayLength: {x: 1.5, y: 1.5}
+  MovingAvaible: 0
+  playerLastMoveDirection: {x: 0, y: 0}
 --- !u!114 &170039647291700507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,8 +247,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d52d5a6d19bd743439706f381e7cb283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpellCooldown: 0.35
+  maxLightningCooldown: 2
+  maxSpellCircleCooldown: 4
+  maxDefenseCooldown: 8
+  maxBlastCooldown: 12
   maxManaValue: 100
-  manaRegenValue: 0.01
+  manaSpellCost: 2
+  manaLightningCost: 7
+  manaSpellCircleCost: 15
+  manaDefenseCircleCost: 25
+  manaBlastCost: 40
 --- !u!114 &985256577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthRegenValue: 0.005
+  timeInvincible: 0.5
 --- !u!1001 &170039648350491517
 PrefabInstance:
   m_ObjectHideFlags: 0

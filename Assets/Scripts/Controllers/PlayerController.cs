@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
 
     private void GetMovementInput()
     {
-
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
 
@@ -69,7 +68,6 @@ public class PlayerController : MonoBehaviour
     {
         lookDirection = mouseTarget - rigidbody2d.position;
         lookDirection.Normalize();
-        
         // angle = Mathf.Atan2(lookDirection.x, lookDirection.y) * Mathf.Rad2Deg;
     }
 }

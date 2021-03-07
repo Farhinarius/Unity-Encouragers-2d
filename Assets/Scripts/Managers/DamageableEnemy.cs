@@ -26,7 +26,7 @@ public class DamageableEnemy : MonoBehaviour
         else
         {
         /* Debug.Log("non zero health"); */
-            healthBar.SetHealthBarValue(healthBar.GetHealthBarValue() - (float) damageAmount / maxHealth);
+            healthBar.SetValue(healthBar.GetValue() - (float) damageAmount / maxHealth);
             if (gameObject.GetComponent<Destructible>() != null) // if destructible
                 GetComponent<Destructible>().ChangeState(health);   // state is health
         }

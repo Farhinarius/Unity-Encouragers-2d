@@ -9,22 +9,35 @@ public class MageController : MonoBehaviour
     private PlayerController player;
 
     // cooldown timers
-    public const float maxSpellCooldown = 0.3f;
+    public float maxSpellCooldown = 0.35f;
     private float spellCooldown;
-    public const float maxLightningCooldown = 2f;
+    public float maxLightningCooldown = 2f;
     private float lightningCooldown;
-    public const float maxSpellCircleCooldown = 4f;
+    public float maxSpellCircleCooldown = 4f;
     private float spellCircleCooldown;
-    public const float maxDefenseCooldown = 8f;
+    public float maxDefenseCooldown = 8f;
     private float defenseCooldown;
-    public const float maxBlastCooldown = 12f;
+    public float maxBlastCooldown = 12f;
     private float blastCooldown;
 
     // mana values
     public int maxManaValue;
+    private float currentMana;
     private ManaBar manaBar;
-    public float manaRegenValue;
+    public float manaRegenValue { get => 0.01f / maxManaValue; }
     
+    // mana slider costs
+    public float manaSpellCost = 2f;
+    public float ManaSpellCost { get => manaSpellCost / maxManaValue; }
+    public float manaLightningCost = 7f;
+    public float ManaLightningCost { get => manaLightningCost / maxManaValue; }
+    public float manaSpellCircleCost = 15f;
+    public float ManaSpellCircleCost { get => manaSpellCircleCost / maxManaValue; }
+    public float manaDefenseCircleCost = 25f; 
+    public float ManaDefenseCircleCost { get => manaDefenseCircleCost / maxManaValue; }
+    public float manaBlastCost = 40f;
+    public float ManaBlastCost { get => manaBlastCost / maxManaValue; }
+
     //temp 
     private int lightningCounter = 0;
     private int blastCounter = 0;
@@ -39,48 +52,32 @@ public class MageController : MonoBehaviour
     { 
         get 
         { 
-            if (lightningCooldown <= 0)
-                return 0;
-            else
-            {
-                return lightningCooldown;
-            }
+            if (lightningCooldown <= 0) return 0;
+            else return lightningCooldown;
         } 
     }
     public float getSpellCircleCooldown 
     {
         get 
         {
-            if (spellCircleCooldown <= 0)
-                return 0;
-            else
-            {
-                return spellCircleCooldown;
-            }
+            if (spellCircleCooldown <= 0) return 0;
+            else return spellCircleCooldown;
         }
     }
     public float getDefenseCooldown
     {
         get
         {
-            if (defenseCooldown <= 0)
-                return 0;
-            else
-            {
-                return defenseCooldown;
-            }
+            if (defenseCooldown <= 0) return 0;
+            else return defenseCooldown;
         }
     }
     public float getBlastCooldown
     {
         get
         {
-            if (blastCooldown <= 0)
-                return 0;
-            else
-            {
-                return blastCooldown;
-            }
+            if (blastCooldown <= 0) return 0;
+            else return blastCooldown;
         }
     }
 
@@ -117,18 +114,19 @@ public class MageController : MonoBehaviour
 
     private void GradualManaRestoration()
     {
-        if (manaBar.GetManaBarValue() != maxManaValue)
-            manaBar.SetManaBarValue(manaBar.GetManaBarValue() + manaRegenValue / maxManaValue);
+        if (manaBar.GetValue() < 1)
+            manaBar.IncreaseValue( manaRegenValue );
+            //manaBar.SetValue(manaBar.GetValue() + manaRegenValue / maxManaValue);
     }
 
     private void LaunchProjectile()
     {
-        if (spellCooldown <= 0 && manaBar.GetManaBarValue() >= 2f / maxManaValue )
+        if (spellCooldown <= 0 && manaBar.GetValue() >= ManaSpellCost )
         {
             GameObject projectile = Instantiate(Resources.Load("Spell"), transform.position, Quaternion.identity) 
             as GameObject;
             projectile.GetComponent<Projectile>().SetDirection(player.LookDirection);
-            manaBar.SetManaBarValue(manaBar.GetManaBarValue() - 2f/maxManaValue);
+            manaBar.DecreaseValue( ManaSpellCost );
             spellCooldown = maxSpellCooldown;
         }
     }
@@ -138,7 +136,7 @@ public class MageController : MonoBehaviour
         // FIRST ABILITY (instant lighting)
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (lightningCooldown <= 0 && manaBar.GetManaBarValue() >= 5f / maxManaValue)
+            if (lightningCooldown <= 0 && manaBar.GetValue() >= ManaLightningCost)
             {
                 // make UI request for storing number of remained spells 
                 lightningCounter++;
@@ -149,8 +147,8 @@ public class MageController : MonoBehaviour
 
                 lightning.transform.SetParent(this.gameObject.transform, false);
                 lightning.transform.position = transform.position + (Vector3) player.LookDirection;
-                
-                manaBar.SetManaBarValue(manaBar.GetManaBarValue() - 5f / maxManaValue); // using mana for the first ability 
+
+                manaBar.DecreaseValue(ManaLightningCost); // using mana for the first ability 
                 if (lightningCounter == 3) 
                 {
                     lightningCooldown = maxLightningCooldown;
@@ -163,7 +161,7 @@ public class MageController : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha2))
         {
             // if the button is not pressed already and cooldown passed (alpha2Pressed == false)
-            if (spellCircleCooldown <= 0 && alpha2Pressed != true && manaBar.GetManaBarValue() >= 15f / maxManaValue )
+            if (spellCircleCooldown <= 0 && alpha2Pressed != true && manaBar.GetValue() >= ManaSpellCircleCost )
             {
                 alpha2Pressed = true; // fix pressing (button bressed) and implement code below one time
                 float angle = 0;
@@ -172,8 +170,8 @@ public class MageController : MonoBehaviour
                     SpawnProjectileAsChild(angle, 12);
                     angle += 45;
                 }
-                
-                manaBar.SetManaBarValue(manaBar.GetManaBarValue() - 15f / maxManaValue); // using mana for the second ability
+
+                manaBar.DecreaseValue(ManaSpellCircleCost); // using mana for the second ability
                 spellCircleCooldown = maxSpellCircleCooldown;
                 Debug.Log("Implemented function of pressing");
             }
@@ -187,7 +185,7 @@ public class MageController : MonoBehaviour
         // THIRD ABILITY (defense circle)
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if (defenseCooldown <= 0 && manaBar.GetManaBarValue() >= 10f / maxManaValue)
+            if (defenseCooldown <= 0 && manaBar.GetValue() >= ManaDefenseCircleCost)
             {
                 GameObject defenseCircle = Instantiate(Resources.Load("DefenceCircle"),
                 transform.position, 
@@ -197,8 +195,8 @@ public class MageController : MonoBehaviour
                 defenseCircle.transform.position = transform.position;
 
                 GetComponent<Rigidbody2D>().mass = 5000; //unmovable defense circle
-                
-                manaBar.SetManaBarValue(manaBar.GetManaBarValue() - 10f / maxManaValue); // using mana for third ability
+
+                manaBar.DecreaseValue(ManaDefenseCircleCost); // using mana for third ability
                 defenseCooldown = maxDefenseCooldown;
             }
         }
@@ -206,7 +204,7 @@ public class MageController : MonoBehaviour
         // FOURTH ABILITY (ultra blast with projectiles)
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            if (blastCooldown <= 0 && manaBar.GetManaBarValue() >= 40f / maxManaValue)
+            if (blastCooldown <= 0 && manaBar.GetValue() >= ManaBlastCost)
             {
                 Debug.Log("Instantiate, please");
                 while (blastCounter < 100)
@@ -223,7 +221,7 @@ public class MageController : MonoBehaviour
                 
                     projectile.GetComponent<Projectile>().SetSpeed(15);
                 }
-                manaBar.SetManaBarValue(manaBar.GetManaBarValue() - 40f / maxManaValue); // using mana for fourth ability
+                manaBar.DecreaseValue(ManaBlastCost); // using mana for fourth ability
                 blastCooldown = maxBlastCooldown;
             }
         }

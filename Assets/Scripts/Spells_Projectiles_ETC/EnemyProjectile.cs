@@ -34,7 +34,7 @@ public class EnemyProjectile : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("Necro Hit: " + other.gameObject);
-            PlayerController.staticController.GetComponent<DamageablePlayer>().Damage(25);
+            PlayerController.staticController.GetComponent<DamageablePlayer>().UpdateHealth(-25);
             Destroy(this.gameObject);
         }
         else if (other.tag == "Item")

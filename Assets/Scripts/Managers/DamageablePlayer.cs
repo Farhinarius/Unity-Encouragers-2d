@@ -6,42 +6,78 @@ using UnityEngine;
 public class DamageablePlayer : MonoBehaviour
 {
     public float maxHealth;
-    private int health;
+    private float health;
     public float healthRegenValue;
     private HealthBar healthBar;
 
+    // iframe vairalbes
+    public float timeInvincible = 1f;
+    float invincibleTimer;
+
     void Start()
     {
-        health = (int) maxHealth;
+        health = maxHealth;
         healthBar = gameObject.GetComponentInChildren<HealthBar>();
     }
 
     public void Damage(int damageAmount)
     {
-        health -= damageAmount;
-        if (health <= 0)
+        if (invincibleTimer < 0)
         {
-            gameObject.SetActive(false);
-            return;
+            health += damageAmount;
+            if (health > 0)
+            {
+                healthBar.SetValue(health / maxHealth);
+                if (gameObject.GetComponent<Destructible>() != null)
+                    GetComponent<Destructible>().ChangeState((int)health);
+
+                invincibleTimer = timeInvincible;
+                Debug.Log("Health has been reduced: " + health / maxHealth);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
-        else
-        {
-            healthBar.SetHealthBarValue(health / maxHealth); // set hp on UI
-            if (gameObject.GetComponent<Destructible>() != null) // if destructible
-                GetComponent<Destructible>().ChangeState(health);   // state is health
-        } 
-        Debug.Log("Health: " + health / maxHealth);
     }
 
-    private void Update() {
+    public void Heal(int healAmount)
+    {
+        health = Mathf.Clamp(health + healAmount, 0, maxHealth);
+        healthBar.SetValue(health / maxHealth);
+
+        if (gameObject.GetComponent<Destructible>() != null)
+            GetComponent<Destructible>().ChangeState((int)health);
+    }
+
+    public void UpdateHealth(int amount)
+    {
+        if (amount < 0)
+        {
+            Damage(amount);
+        }
+        else 
+        {
+            Heal(amount);
+        }
+    }
+
+    private void Update() 
+    {
+        if (invincibleTimer >= 0) invincibleTimer -= Time.deltaTime;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Damage(5);
+            UpdateHealth(10);
         }
     }
 
     private void FixedUpdate() {
-        if (healthBar.GetHealthBarValue() != maxHealth)
-            healthBar.SetHealthBarValue(healthBar.GetHealthBarValue() + healthRegenValue / maxHealth);
+        // slow health recovery
+        if (health < maxHealth)
+        {
+            health += healthRegenValue;
+            healthBar.SetValue(health / maxHealth);
+        }
     }
 }

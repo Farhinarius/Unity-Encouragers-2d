@@ -12,14 +12,13 @@ public class HealthBar : MonoBehaviour
         HealthBarImage = GetComponent<Image>();
     }
 
-    public void SetHealthBarValue(float value)
+    public void SetValue(float value)
     {
         HealthBarImage.fillAmount = value;
     }
 
-    public float GetHealthBarValue()
+    public float GetValue()
     {
         return HealthBarImage.fillAmount;
     }
-
 }

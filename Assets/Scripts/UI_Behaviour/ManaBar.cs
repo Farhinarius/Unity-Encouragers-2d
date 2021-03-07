@@ -14,13 +14,23 @@ public class ManaBar : MonoBehaviour
         staticBar = this;
     }
 
-    public void SetManaBarValue(float value)
+    public void SetValue(float value)
     {
         ManaBarImage.fillAmount = value;
     }
 
-    public float GetManaBarValue()
+    public float GetValue()
     {
         return ManaBarImage.fillAmount;
+    }
+
+    public void IncreaseValue(float value)
+    {
+        ManaBarImage.fillAmount += value;
+    }
+
+    public void DecreaseValue(float value)
+    {
+        ManaBarImage.fillAmount -= value;
     }
 }

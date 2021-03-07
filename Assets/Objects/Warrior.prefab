@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4950174257142681779}
   - component: {fileID: 3554517843086007083}
   - component: {fileID: -4693298704855723530}
+  - component: {fileID: 919990427}
+  - component: {fileID: 919990428}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Player
@@ -131,9 +133,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &-4693298704855723530
 MonoBehaviour:
@@ -149,6 +151,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   interactiveRayLength: {x: 1.5, y: 1.5}
+  MovingAvaible: 0
+  playerLastMoveDirection: {x: 0, y: 0}
+--- !u!114 &919990427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950174257142681790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d05bc300036559649be60b103b150161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHand: {fileID: 2668074119970524361}
+  rightHand: {fileID: 3529892275256564370}
+--- !u!114 &919990428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950174257142681790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7ecbd9465fee64da48949559a0c0d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5111189112543705342
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +317,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightHand
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8962354385162796050, guid: 1e802c2f3b2ec314cb9f42548ab20c91, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e802c2f3b2ec314cb9f42548ab20c91, type: 3}
 --- !u!4 &3529892275256564370 stripped
 Transform:
@@ -349,7 +380,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftHand
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5800382327606568147, guid: 1568f0571a9093444998a6d5dd8e0ff8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1568f0571a9093444998a6d5dd8e0ff8, type: 3}
 --- !u!4 &2668074119970524361 stripped
 Transform:
