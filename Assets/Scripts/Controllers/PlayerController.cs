@@ -17,12 +17,15 @@ public class PlayerController : MonoBehaviour
     {
         get { return lookDirection; }
     }
+    public bool MovingAvaible;
+    public Vector2 playerLastMoveDirection;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         staticController = this;
+        MovingAvaible = true;
     }
 
     // Update is called once per frame
@@ -44,10 +47,12 @@ public class PlayerController : MonoBehaviour
 
     private void GetMovementInput()
     {
+
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
-    }
 
+        playerLastMoveDirection = movement;
+    }
     private void MovementControl()
     {
         Vector2 positionToMove = rigidbody2d.position;
