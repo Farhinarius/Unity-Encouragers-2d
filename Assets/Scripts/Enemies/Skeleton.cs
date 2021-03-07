@@ -28,7 +28,7 @@ public class Skeleton : MonoBehaviour
         {
             float angle = Random.Range(0, Mathf.PI * 2f);
             GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * speed; // move around
-        } 
+        }
 
 
         if (speed < maxspeed)
@@ -41,13 +41,12 @@ public class Skeleton : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) 
+    private void OnCollisionStay2D(Collision2D other) 
     {
-        //
         if ( other.gameObject.CompareTag("Player") )
         {
             Debug.Log("Skeleton Hit: " + other.gameObject);
-            PlayerController.staticController.GetComponent<DamageablePlayer>().Damage(25);
+            PlayerController.staticController.GetComponent<DamageablePlayer>().UpdateHealth(-25);
         }
     } 
 }
