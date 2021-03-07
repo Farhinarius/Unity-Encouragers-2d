@@ -8,11 +8,12 @@ public class DamageablePlayer : MonoBehaviour
     public float maxHealth;
     private int health;
     public float healthRegenValue;
-    public HealthBar healthBar;
+    private HealthBar healthBar;
 
     void Start()
     {
         health = (int) maxHealth;
+        healthBar = gameObject.GetComponentInChildren<HealthBar>();
     }
 
     public void Damage(int damageAmount)
