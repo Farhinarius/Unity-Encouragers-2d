@@ -194,8 +194,6 @@ public class MageController : MonoBehaviour
                 defenseCircle.transform.SetParent(this.gameObject.transform, false);
                 defenseCircle.transform.position = transform.position;
 
-                GetComponent<Rigidbody2D>().mass = 5000; //unmovable defense circle
-
                 manaBar.DecreaseValue(ManaDefenseCircleCost); // using mana for third ability
                 defenseCooldown = maxDefenseCooldown;
             }

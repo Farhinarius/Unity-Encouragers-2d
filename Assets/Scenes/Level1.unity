@@ -3661,10 +3661,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 985256577, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 170039647361208380, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
       propertyPath: m_Name
       value: Mage
@@ -3712,10 +3708,6 @@ PrefabInstance:
     - target: {fileID: 170039647361208382, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7940991764857992635, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
-      propertyPath: speed
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}

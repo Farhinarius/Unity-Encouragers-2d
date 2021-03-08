@@ -247,10 +247,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpellCooldown: 0.35
-  maxLightningCooldown: 2
-  maxSpellCircleCooldown: 4
-  maxDefenseCooldown: 8
-  maxBlastCooldown: 12
+  maxLightningCooldown: 5
+  maxSpellCircleCooldown: 10
+  maxDefenseCooldown: 15
+  maxBlastCooldown: 20
   maxManaValue: 100
   manaSpellCost: 2
   manaLightningCost: 7
@@ -279,6 +279,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 170039647361208382}
     m_Modifications:
+    - target: {fileID: 1029899362, guid: cf8ff66c0350e094eb1343eb31c242ee, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 39.31662
+      objectReference: {fileID: 0}
     - target: {fileID: 1261669639, guid: cf8ff66c0350e094eb1343eb31c242ee, type: 3}
       propertyPath: m_Color.r
       value: 0.102394104

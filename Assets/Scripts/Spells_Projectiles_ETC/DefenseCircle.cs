@@ -18,7 +18,6 @@ public class DefenseCircle : MonoBehaviour
 
     private void OnDisable() {
         Debug.Log("Destroy cicrle");
-        GetComponentInParent<Rigidbody2D>().mass = 1;
     }
 
 /*     private void OnTriggerEnter2D(Collider2D other)

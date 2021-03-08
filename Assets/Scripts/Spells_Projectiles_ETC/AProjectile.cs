@@ -47,6 +47,11 @@ public class AProjectile : MonoBehaviour
             other.GetComponent<DamageableEnemy>().Damage(1);
             Destroy(this.gameObject);
         }
+        else if (other.tag == "Item")
+        {
+            other.GetComponent<Destructible>().Damage();
+            Destroy(this.gameObject);
+        }
         else if (other.tag == "Wall")
         {
             Destroy(this.gameObject);
