@@ -751,10 +751,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 170039647361208383, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
 --- !u!1001 &7127893675275528435
@@ -811,10 +807,6 @@ PrefabInstance:
     - target: {fileID: 4950174257142681790, guid: 119832fe41255c846a88a3be8a87504c, type: 3}
       propertyPath: m_Name
       value: Warrior
-      objectReference: {fileID: 0}
-    - target: {fileID: 4950174257142681790, guid: 119832fe41255c846a88a3be8a87504c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 119832fe41255c846a88a3be8a87504c, type: 3}

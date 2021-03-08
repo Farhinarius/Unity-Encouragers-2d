@@ -2,61 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class WarriorController : MonoBehaviour
 {
     private PlayerController player;
-    private HandsController hands;
     private bool dashProcessing;
-    private Vector3 dashStartPoint;
-    private Vector2 dashEndPoint;
     private float dashTime;
-    private Vector2 moveDirection;
-    private Rigidbody2D rb2d;
+    private ManaBar staminaBar;
+    
+    // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<PlayerController>();
-        hands = GetComponent<HandsController>();
-        rb2d = GetComponent<Rigidbody2D>();
-
+        staminaBar = GetComponentInChildren<ManaBar>();
     }
 
-    void Update()
-    {
-        MovementDirection();
-      
+    // Update is called once per frame
+
+    private void FixedUpdate() {
+        ListenDash();
+        GradualStaminaRestoration();
     }
 
-    void FixedUpdate()
+    private void GradualStaminaRestoration()
     {
-        Dash(); 
+        if (staminaBar.GetValue() < 1)
+            staminaBar.IncreaseValue(0.01f / 100f);
     }
 
-    private void MovementDirection()
+    private void ListenDash()
     {
-        moveDirection = (rb2d.position + player.playerLastMoveDirection) - rb2d.position;
-    }
-    private void Dash()
-    {
-        if ( ( Input.GetButtonDown("Fire2") ) && ( dashProcessing == false ) )
+        if ((Input.GetButtonDown("Fire2")) && dashProcessing == false && staminaBar.GetValue() >= 10f / 100f)
         {
-            dashStartPoint = rb2d.position;
             Debug.Log("Dash");
             dashProcessing = true;
+            staminaBar.DecreaseValue(10f / 100f);
             dashTime = 0f;
 
         }
         if (dashProcessing)
         {
-            rb2d.MovePosition(rb2d.position + moveDirection * Time.fixedDeltaTime * 120);
+            Debug.Log("Dashed");
+            player.needDash = true;
             dashTime += Time.fixedDeltaTime;
             if (dashTime >= 0.1f)
             {
                 dashProcessing = false;
+                player.needDash = false;
             }
-            
         }
-        
     }
-
 }

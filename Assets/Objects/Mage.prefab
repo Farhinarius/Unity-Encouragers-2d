@@ -233,8 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   interactiveRayLength: {x: 1.5, y: 1.5}
-  MovingAvaible: 0
-  playerLastMoveDirection: {x: 0, y: 0}
+  needDash: 0
 --- !u!114 &170039647291700507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +279,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 170039647361208382}
     m_Modifications:
+    - target: {fileID: 1261669639, guid: cf8ff66c0350e094eb1343eb31c242ee, type: 3}
+      propertyPath: m_Color.r
+      value: 0.102394104
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261669639, guid: cf8ff66c0350e094eb1343eb31c242ee, type: 3}
+      propertyPath: m_Color.g
+      value: 0.30916107
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261669639, guid: cf8ff66c0350e094eb1343eb31c242ee, type: 3}
+      propertyPath: m_Color.b
+      value: 0.5566038
+      objectReference: {fileID: 0}
     - target: {fileID: 6065359820497548575, guid: cf8ff66c0350e094eb1343eb31c242ee, type: 3}
       propertyPath: m_Name
       value: MageOverlayUI

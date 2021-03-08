@@ -17,15 +17,14 @@ public class PlayerController : MonoBehaviour
     {
         get { return lookDirection; }
     }
-    public bool MovingAvaible;
-    public Vector2 playerLastMoveDirection;
+
+    public bool needDash = false;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         staticController = this;
-        MovingAvaible = true;
     }
 
     // Update is called once per frame
@@ -40,17 +39,17 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Get look direction: " + GetLookDirecton());
     }
 
-    private void FixedUpdate() 
+    private void FixedUpdate()
     {
         MovementControl();
+        if (needDash)
+            Dash();
     }
 
     private void GetMovementInput()
     {
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
-
-        playerLastMoveDirection = movement;
     }
     private void MovementControl()
     {
@@ -70,5 +69,10 @@ public class PlayerController : MonoBehaviour
         lookDirection.Normalize();
         // angle = Mathf.Atan2(lookDirection.x, lookDirection.y) * Mathf.Rad2Deg;
     }
-}
 
+    // Warrior only
+    public void Dash()
+    {
+        rigidbody2d.MovePosition(rigidbody2d.position + movement * Time.fixedDeltaTime * 120);
+    }
+}
