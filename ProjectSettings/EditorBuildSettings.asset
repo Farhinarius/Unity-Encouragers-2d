@@ -9,11 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/EntryMenu.unity
     guid: f7087199dfa323b49affbf80f73de74d
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
+    path: Assets/Scenes/Level1Mage.unity
+    guid: 0dd78f6ebb84c0c4c87a407a9d61c68c
+  - enabled: 1
+    path: Assets/Scenes/Level2Mage.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Level2.unity
+    path: Assets/Scenes/Level1Warrior.unity
     guid: 80646eb76dad708409de253fd8c5206c
+  - enabled: 1
+    path: Assets/Scenes/Level2Warrior.unity
+    guid: fdff81cb474743b488c382029772e8c9
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: df0881f4e6b054f48b118a031aa78bfb

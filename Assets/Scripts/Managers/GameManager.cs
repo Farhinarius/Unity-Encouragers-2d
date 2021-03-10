@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-    public static int currectSceneIndex;
+    private string playerName;
+    public static int currectSceneIndex = 0;
     private bool gameOver;
 
     private void Awake() {
@@ -25,21 +26,30 @@ public class GameManager : MonoBehaviour
 
     public void ActionHandler()
     {
-        // If in menu
+        // If in menu and space bar pressedthen pick random class for playing
         if (currectSceneIndex == 0)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                LoadNextScene();
+                var randomValue = Random.Range(0,2);
+                if (randomValue == 1)
+                {
+                    playerName = "Warrior";
+                }
+                else
+                {
+                    playerName = "Mage";
+                }
+                LoadNextPlayableScene();
             }
         }
         
-        // if in gameover scene
+        // if in gameover scene player can reload level or
         if (gameOver)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                RelaodCurrentScene();
+                RelaodCurrentPlayableScene();
                 gameOver = false;
             }
 
@@ -50,34 +60,54 @@ public class GameManager : MonoBehaviour
                 gameOver = false;
             }
         }
+
+        // if not in meny then player can stop the game by pression escape
+        if (currectSceneIndex != 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Time.timeScale = 0;
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Time.timeScale = 1;
+            }
+        }
     }
 
-    private void LoadNextScene()
+    public void LoadNextPlayableScene()
     {
-        SceneManager.LoadScene($"Level{++currectSceneIndex}");
+        SceneManager.LoadScene($"Level{++currectSceneIndex}{playerName}");
     }
 
-    private IEnumerator LoadNextSceneWithDelay(float delay)
+    private IEnumerator LoadNextPlayableSceneWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene($"Level{++currectSceneIndex}");
+        SceneManager.LoadScene($"Level{++currectSceneIndex}{playerName}");
     }
 
-    private void RelaodCurrentScene()
+    private void RelaodCurrentPlayableScene()
     {
-        SceneManager.LoadScene($"Level{currectSceneIndex}");
+        SceneManager.LoadScene($"Level{currectSceneIndex}{playerName}");
     }
 
     public void Victory()
     {
         // show victory
-        PlayerController.staticController.transform.Find("MageOverlayUI/WinText").gameObject.SetActive(true);
-        StartCoroutine(LoadNextSceneWithDelay(3f));
+        Debug.Log(playerName);
+        PlayerController.staticController.transform.Find($"{playerName}OverlayUI/WinText").gameObject.SetActive(true);
+        StartCoroutine(LoadNextPlayableSceneWithDelay(3f));
     }
 
     public void Defeat()
     {
         gameOver = true;
         SceneManager.LoadScene("GameOver");
+    }
+
+    public void SetPlayerName(string playerName)
+    {
+        this.playerName = playerName;
     }
 }
