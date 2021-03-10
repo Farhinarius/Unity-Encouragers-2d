@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2386643314824257036}
   - component: {fileID: 8468822234184844946}
   - component: {fileID: 3261275366350353527}
-  - component: {fileID: 2631266116177497084}
+  - component: {fileID: 3027816041469154576}
   m_Layer: 0
   m_Name: PressurePlateHolding
   m_TagString: Untagged
@@ -98,7 +98,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0020359308, y: 0.05652386}
+  m_Offset: {x: -0.000251472, y: 0.04295215}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -109,9 +109,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0034367, y: 1.0052012}
+  m_Size: {x: 1.001136, y: 1.03}
   m_EdgeRadius: 0
---- !u!114 &2631266116177497084
+--- !u!114 &3027816041469154576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,9 +124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AffectedObject: {fileID: 0}
-  returnDoorOnRelease: 1
-  endPosition: {x: 0, y: 0, z: 0}
-  speed: 0
+  returnDoorOnRelease: 0
+  endPosition: {x: -20, y: 68.6, z: 0}
+  speed: 20
 --- !u!1 &2285978849869125923
 GameObject:
   m_ObjectHideFlags: 0

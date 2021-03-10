@@ -41,7 +41,7 @@ public class Necromancer : MonoBehaviour
         }
 
         // transition condition
-        if (Vector2.Distance(transform.position, PlayerController.staticController.transform.position) <= 60)
+        if (Vector2.Distance(transform.position, PlayerController.staticController.transform.position) <= 80)
         {
             TransitTo(Attacking);
         }
@@ -52,7 +52,7 @@ public class Necromancer : MonoBehaviour
         float angle = Random.Range(-0.5f, 0.5f) + Mathf.Atan2(PlayerController.staticController.transform.position.y - transform.position.y, PlayerController.staticController.transform.position.x - transform.position.x);
         GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * speed;
 
-        if (Vector2.Distance(transform.position, PlayerController.staticController.transform.position) <= 60)
+        if (Vector2.Distance(transform.position, PlayerController.staticController.transform.position) <= 80)
         {
             TransitTo(Attacking);
         }
@@ -62,7 +62,7 @@ public class Necromancer : MonoBehaviour
     {
         LaunchProjectile();
 
-        if (Vector2.Distance(transform.position, PlayerController.staticController.transform.position) > 60)
+        if (Vector2.Distance(transform.position, PlayerController.staticController.transform.position) > 80)
         {
             TransitTo(FindingPlayer);
         }
