@@ -28,16 +28,18 @@ public class DamageablePlayer : MonoBehaviour
             if (health > 0)
             {
                 healthBar.SetValue(health / maxHealth);
+
                 if (gameObject.GetComponent<Destructible>() != null)
                     GetComponent<Destructible>().ChangeState((int)health);
 
                 invincibleTimer = timeInvincible;
-                Debug.Log("Health has been reduced: " + health / maxHealth);
+                // Debug.Log("Health has been reduced: " + health / maxHealth);
             }
-            else
+            else 
             {
-                gameObject.SetActive(false);
+                GameManager.instance.Defeat();
             }
+
         }
     }
 
@@ -66,10 +68,10 @@ public class DamageablePlayer : MonoBehaviour
     {
         if (invincibleTimer >= 0) invincibleTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+/*         if (Input.GetKeyDown(KeyCode.Space))
         {
             UpdateHealth(10);
-        }
+        } */
     }
 
     private void FixedUpdate() {

@@ -45,8 +45,8 @@ public class Skeleton : MonoBehaviour
     {
         if ( other.gameObject.CompareTag("Player") )
         {
-            Debug.Log("Skeleton Hit: " + other.gameObject);
-            PlayerController.staticController.GetComponent<DamageablePlayer>().UpdateHealth(-25);
+            // Debug.Log("Skeleton Hit: " + other.gameObject);
+            PlayerController.staticController.GetComponent<DamageablePlayer>().UpdateHealth(-35);
         }
     } 
 }

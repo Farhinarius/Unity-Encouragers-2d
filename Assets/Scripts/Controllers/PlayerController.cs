@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
     }
+    
     private void MovementControl()
     {
         Vector2 positionToMove = rigidbody2d.position;

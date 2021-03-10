@@ -16,10 +16,6 @@ public class DefenseCircle : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void OnDisable() {
-        Debug.Log("Destroy cicrle");
-    }
-
 /*     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Enemy" || other.tag == "Projectile")

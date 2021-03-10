@@ -95,7 +95,7 @@ public class MageController : MonoBehaviour
         if (Input.GetButton("Fire1"))
         {
             LaunchProjectile();
-            Debug.Log("FIRE!");
+            // Debug.Log("FIRE!");
         }
         ListenAbilities();
     }
@@ -173,7 +173,7 @@ public class MageController : MonoBehaviour
 
                 manaBar.DecreaseValue(ManaSpellCircleCost); // using mana for the second ability
                 spellCircleCooldown = maxSpellCircleCooldown;
-                Debug.Log("Implemented function of pressing");
+                // Debug.Log("Implemented function of pressing");
             }
         }
         else if (Input.GetKeyUp(KeyCode.Alpha2))
@@ -204,7 +204,6 @@ public class MageController : MonoBehaviour
         {
             if (blastCooldown <= 0 && manaBar.GetValue() >= ManaBlastCost)
             {
-                Debug.Log("Instantiate, please");
                 while (blastCounter < 100)
                 {
                     blastCounter++;
