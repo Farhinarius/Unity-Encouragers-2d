@@ -50,8 +50,6 @@ public class Hand : MonoBehaviour
                 handCollider.enabled = false;
                 iFrameTime = 0f;
                 other.GetComponent<Rigidbody2D>().AddForce(player.LookDirection*1000, ForceMode2D.Impulse);
-
-
             }
         }
     }

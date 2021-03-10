@@ -14,7 +14,7 @@ public class TextFade : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        for (float ft = 1f; ft >= 0; ft -= 0.04f)
+        for (float ft = 1f; ft >= 0; ft -= 0.035f)
         {
             Color c = textRenderer.color;
             c.a = ft;
@@ -26,7 +26,7 @@ public class TextFade : MonoBehaviour
 
     IEnumerator FadeIn()
     {
-        for (float ft = 0; ft <= 1f; ft += 0.04f)
+        for (float ft = 0; ft <= 1f; ft += 0.035f)
         {
             Color c = textRenderer.color;
             c.a = ft;
