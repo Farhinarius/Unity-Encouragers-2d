@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     }
 
     public bool needDash = false;
+    public int defaultDamage;
+    public int damageModifier;
+    public int damage;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +40,8 @@ public class PlayerController : MonoBehaviour
         Debug.DrawLine(transform.position, mouseTarget, Color.red);
         //Debug.DrawRay(transform.position, lookDirection * 10, Color.blue);
         //Debug.Log("Get look direction: " + GetLookDirecton());
+
+        damage = defaultDamage * damageModifier;
     }
 
     private void FixedUpdate()
@@ -76,4 +81,5 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody2d.MovePosition(rigidbody2d.position + movement * Time.fixedDeltaTime * 120);
     }
+
 }

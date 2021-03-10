@@ -6,6 +6,7 @@ public class Hand : MonoBehaviour
 {
     public PlayerController player;
     private BoxCollider2D handCollider;
+    private int damage;
     private float iFrameTime;
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,7 @@ public class Hand : MonoBehaviour
             if (other.tag == "Enemy")
             {
 
-                other.GetComponent<DamageableEnemy>().Damage(1);
+                other.GetComponent<DamageableEnemy>().Damage(PlayerController.staticController.damage);
                 handCollider.enabled = false;
                 iFrameTime = 0f;
                 other.GetComponent<Rigidbody2D>().AddForce(player.LookDirection * 3000, ForceMode2D.Impulse);
