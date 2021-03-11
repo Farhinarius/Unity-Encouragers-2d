@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     private string playerName;
-    private PlayerController playerController;
-    private GameObject playerUI;
     public static int currectSceneIndex = 0;
     private bool gameOver;
 
@@ -48,7 +44,7 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        // if in gameover scene player can reload level or return to entry menu
+        // if in gameover scene player can reload level or
         if (gameOver)
         {
             if (Input.GetKeyDown(KeyCode.R))
@@ -80,59 +76,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void LoadNextPlayableScene()
     {
         SceneManager.LoadScene($"Level{++currectSceneIndex}{playerName}");
-        SceneManager.sceneLoaded += ImplementWhenSceneLoaded;
     }
 
     private IEnumerator LoadNextPlayableSceneWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene($"Level{++currectSceneIndex}{playerName}");
-        SceneManager.sceneLoaded += ImplementWhenSceneLoaded;
     }
 
     private void RelaodCurrentPlayableScene()
     {
         SceneManager.LoadScene($"Level{currectSceneIndex}{playerName}");
-    }
-
-    void ImplementWhenSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log("Mode: " + mode);
-        // may i instantiate GO after loading scene
-        RefreshPlayerData();
-        SetActivePlayableScene();
-        UpdateCoinOnSceneLoad();
-        ShowLevelAtUI();
-        Debug.Log("RefreshPlayerData called");
-    }
-
-    // scene and UI requests
-    private void RefreshPlayerData()
-    {
-        playerController = PlayerController.staticController;
-        playerUI = playerController.transform.Find($"{playerName}OverlayUI").gameObject;
-    }
-
-    private void SetActivePlayableScene()
-    {
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName($"Level{currectSceneIndex}{playerName}"));
-        Debug.Log("Active scene: " + SceneManager.GetActiveScene().name);
-    }
-
-    private void ShowLevelAtUI()
-    {
-        playerUI.transform.Find("LevelShow").GetComponent<TextMeshProUGUI>().text = $"Level {currectSceneIndex}";
-    }
-
-    private void UpdateCoinOnSceneLoad()
-    {
-        playerUI.transform.Find("CoinValue").GetComponent<TextMeshProUGUI>().text = 
-        GetComponent<CoinManager>().Coins.ToString();
     }
 
     public void Victory()
@@ -151,10 +108,5 @@ public class GameManager : MonoBehaviour
     public void SetPlayerName(string playerName)
     {
         this.playerName = playerName;
-    }
-
-    public void UpdateUICoinNumber(int pickedCoins)
-    {
-        playerUI.transform.Find("CoinValue").GetComponent<TextMeshProUGUI>().text = pickedCoins.ToString();
     }
 }

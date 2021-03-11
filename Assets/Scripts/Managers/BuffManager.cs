@@ -6,6 +6,7 @@ public class BuffManager : MonoBehaviour
 {
 
     public static BuffManager BuffController;
+    
     public bool fourxDamageIsActive;
     private float fourxDamage;
     public bool speedUpIsActive;
@@ -27,6 +28,7 @@ public class BuffManager : MonoBehaviour
             FourxdamageBuff();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
         if (speedUpIsActive == true)
@@ -39,6 +41,9 @@ public class BuffManager : MonoBehaviour
             InvincibilityBuff();
         }
 >>>>>>> 6e58b4681a9c3674477dccc3dd582c64a772b868
+=======
+        Debug.Log(fourxDamageIsActive);
+>>>>>>> parent of 1efb7be (updated game manager and added a pick-up coin system displayed in the UI)
     }
 
 
