@@ -14,14 +14,16 @@ public class GameManager : MonoBehaviour
     public static int currectSceneIndex = 0;
     private bool gameOver;
 
+    private CoinManager coinManager;
+
     private void Awake() {
         Debug.Log("GameManager Awake");
         if (instance == null) instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
 
-    private void ShowCurrentSceneBuildIndex() {
-        Debug.Log("Scene build index: " + SceneManager.GetActiveScene().buildIndex);
+    private void Start() {
+        coinManager = GetComponent<CoinManager>();
     }
 
     private void Update() {
@@ -36,14 +38,8 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 var randomValue = Random.Range(0,2);
-                if (randomValue == 1)
-                {
-                    playerName = "Warrior";
-                }
-                else
-                {
-                    playerName = "Mage";
-                }
+                playerName = (randomValue == 0) ? "Mage" : "Warrior";
+
                 LoadNextPlayableScene();
             }
         }
@@ -53,16 +49,19 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                RelaodCurrentPlayableScene();
-                gameOver = false;
+                RefreshGamingStateOnRestart();
+                RelaodLastPlayableScene();
+                gameOver = false; // do not enter in gameover if block in next update
             }
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 SceneManager.LoadScene("EntryMenu");
+                currectSceneIndex = 0;
                 Destroy(this.gameObject);
-                gameOver = false;
+                gameOver = false; // do not enter in gameover if block in next update
             }
+
         }
 
         // if not in menu then player can stop the game by pressing escape
@@ -93,7 +92,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoad;
     }
 
-    private void RelaodCurrentPlayableScene()
+    private void RelaodLastPlayableScene()
     {
         SceneManager.LoadScene($"Level{currectSceneIndex}");
         SceneManager.sceneLoaded += OnSceneLoad;
@@ -101,16 +100,21 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log("Mode: " + mode);
+        Debug.Log("Scene Loaded: " + scene.name);
         SetActivePlayableScene();
         InstantiatePlayer();
         RefreshPlayerData();
-        UpdateCoinOnSceneLoad();
+        UpdateCoinsOnSceneLoad();
         ShowLevelAtUI();
-        Debug.Log("OnSceneLoad actions has called");
+        Debug.Log("OnSceneLoad actions has called successfully");
     }
 
+    private void SetActivePlayableScene()
+    {
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName($"Level{currectSceneIndex}"));
+        Debug.Log("Active scene: " + SceneManager.GetActiveScene().name);
+    }
+    
     private void InstantiatePlayer()
     {
         Instantiate(Resources.Load(playerName),
@@ -125,21 +129,16 @@ public class GameManager : MonoBehaviour
         playerUI = playerController.transform.Find($"{playerName}OverlayUI").gameObject;
     }
 
-    private void SetActivePlayableScene()
-    {
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName($"Level{currectSceneIndex}"));
-        Debug.Log("Active scene: " + SceneManager.GetActiveScene().name);
-    }
-
     private void ShowLevelAtUI()
     {
         playerUI.transform.Find("LevelShow").GetComponent<TextMeshProUGUI>().text = $"Level {currectSceneIndex}";
     }
 
-    private void UpdateCoinOnSceneLoad()
+    private void UpdateCoinsOnSceneLoad()
     {
         playerUI.transform.Find("CoinValue").GetComponent<TextMeshProUGUI>().text = 
-        GetComponent<CoinManager>().Coins.ToString();
+        coinManager.Coins.ToString();
+        coinManager.UpdateCoinsAtLevelBeginnig();
     }
 
     public void UpdateUICoinNumber(int pickedCoins)
@@ -157,13 +156,19 @@ public class GameManager : MonoBehaviour
 
     public void Defeat()
     {
-        gameOver = true;
-        SceneManager.sceneLoaded -= OnSceneLoad;
+        gameOver = true;    // in update if manager enter restart scene
+        SceneManager.sceneLoaded -= OnSceneLoad; // unsubsribe scene load functioning stack
         SceneManager.LoadScene("GameOver");
     }
 
     public void SetPlayerName(string playerName)
     {
         this.playerName = playerName;
+    }
+
+    public void RefreshGamingStateOnRestart()
+    {
+        coinManager.ResetCoinsAtRestartLevel();
+        // may be more code
     }
 }

@@ -9,6 +9,8 @@ public class CoinManager : MonoBehaviour
 
     private int coins;
 
+    private int coinsAtLevelBeginnig;
+
     public int Coins { get => coins; private set => coins = value; }
 
     private void Awake()
@@ -18,13 +20,23 @@ public class CoinManager : MonoBehaviour
     }
     
     private void Start() {
-        
+        coinsAtLevelBeginnig = coins;
     }
 
     public void AddCoin(int pickedCoins)
     {
         this.Coins += pickedCoins; 
         GameManager.instance.UpdateUICoinNumber(Coins);
+    }
+
+    public void ResetCoinsAtRestartLevel()
+    {
+        coins = coinsAtLevelBeginnig;
+    }
+
+    public void UpdateCoinsAtLevelBeginnig()
+    {
+        coinsAtLevelBeginnig = coins;
     }
 
 
