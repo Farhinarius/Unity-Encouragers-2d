@@ -81,11 +81,15 @@ public class MageController : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        staticController = this;
+    }
+
     // initial behaviour
     private void Start() 
     {
         player = gameObject.GetComponent<PlayerController>();
-        staticController = this;
         manaBar = ManaBar.staticBar;
     }
 

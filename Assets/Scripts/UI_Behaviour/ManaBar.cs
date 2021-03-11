@@ -8,10 +8,12 @@ public class ManaBar : MonoBehaviour
     public static ManaBar staticBar;
     private Image ManaBarImage;
 
+    private void Awake() {
+        staticBar = this;
+    }
     private void Start()
     {
         ManaBarImage = GetComponent<Image>();
-        staticBar = this;
     }
 
     public void SetValue(float value)
