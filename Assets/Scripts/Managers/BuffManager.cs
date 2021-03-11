@@ -6,7 +6,6 @@ public class BuffManager : MonoBehaviour
 {
 
     public static BuffManager BuffController;
-    
     public bool fourxDamageIsActive;
     private float fourxdamage;
 
@@ -23,7 +22,6 @@ public class BuffManager : MonoBehaviour
         {
             FourxdamageBuff();
         }
-        Debug.Log(fourxDamageIsActive);
     }
 
 

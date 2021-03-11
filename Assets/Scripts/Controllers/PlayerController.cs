@@ -23,11 +23,14 @@ public class PlayerController : MonoBehaviour
     public int damageModifier;
     public int damage;
 
+    private void Awake() {
+        staticController = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-        staticController = this;
     }
 
     // Update is called once per frame
