@@ -7,8 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController staticController;
 
-    public float defaultSpeed;
-    public float speedModifier;
+    public float speed;
     Rigidbody2D rigidbody2d;
     private Vector2 lookDirection;
     private Vector2 movement;
@@ -24,11 +23,14 @@ public class PlayerController : MonoBehaviour
     public int damageModifier;
     public int damage;
 
+    private void Awake() {
+        staticController = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-        staticController = this;
     }
 
     // Update is called once per frame
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
     private void MovementControl()
     {
         Vector2 positionToMove = rigidbody2d.position;
-        positionToMove += movement * defaultSpeed * speedModifier * Time.fixedDeltaTime;
+        positionToMove += movement * speed * Time.fixedDeltaTime;
         rigidbody2d.MovePosition(positionToMove);
     }
 

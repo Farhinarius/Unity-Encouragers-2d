@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8963594316238347587}
   - component: {fileID: 8963594316238347584}
   - component: {fileID: 8963594316238347586}
-  - component: {fileID: 734104862420499842}
   m_Layer: 0
   m_Name: 4xBuff
   m_TagString: Collectible
@@ -97,18 +96,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000023841858, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.0738018
---- !u!114 &734104862420499842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8963594316238347585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48635cc25f910d47a0f95e4ad1d1cf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 2.8125
