@@ -12,7 +12,7 @@ public class DamageablePlayer : MonoBehaviour
 
     // iframe vairalbes
     public float timeInvincible = 1f;
-    float invincibleTimer;
+    public float invincibleTimer;
 
     void Start()
     {
