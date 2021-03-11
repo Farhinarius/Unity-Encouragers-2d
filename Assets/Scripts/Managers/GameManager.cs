@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // if not in meny then player can stop the game by pression escape
+        // if not in menu then player can stop the game by pressing escape
         if (currectSceneIndex != 0)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -95,7 +95,6 @@ public class GameManager : MonoBehaviour
     public void Victory()
     {
         // show victory
-        Debug.Log(playerName);
         PlayerController.staticController.transform.Find($"{playerName}OverlayUI/WinText").gameObject.SetActive(true);
         StartCoroutine(LoadNextPlayableSceneWithDelay(3f));
     }

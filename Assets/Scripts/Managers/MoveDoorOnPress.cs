@@ -2,33 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveDoorOnHold : MonoBehaviour
+public class MoveDoorOnPress : MonoBehaviour
 {
     public Transform AffectedObject;
     public bool returnDoorOnRelease;
-    public Vector3 endPosition;
     public float speed = 20f;
-    
-    private Vector3 startPosition;
     private bool pressurePlatePressed;
+    private Vector3 startPosition;
+
 
     // Start is called before the first frame update
     void Start()
     {
         startPosition = AffectedObject.position;
+        AffectedObject.position = Vector2.MoveTowards(AffectedObject.position, AffectedObject.position + Vector3.left * 20, speed * Time.fixedDeltaTime);
     }
 
-    private void FixedUpdate() 
+
+    private void FixedUpdate()
     {
-        if ( GetComponent<Collider2D>().IsTouchingLayers(1) ) SetPressurePlateState(true);
-        else SetPressurePlateState(false); 
+        if (GetComponent<Collider2D>().IsTouchingLayers(1)) SetPressurePlateState(true);
+        else SetPressurePlateState(false);
 
         if (pressurePlatePressed)
         {
-            // open path
-            AffectedObject.position = Vector2.MoveTowards(AffectedObject.position, endPosition, speed * Time.fixedDeltaTime);
+            if (transform.localScale.x > transform.localScale.y)
+                AffectedObject.position = Vector2.MoveTowards(AffectedObject.position, AffectedObject.position + Vector3.left * 20 , speed * Time.fixedDeltaTime);
+            else
+                AffectedObject.position = Vector2.MoveTowards(AffectedObject.position, AffectedObject.position + Vector3.down * 20, speed * Time.fixedDeltaTime);
         }
-        else 
+        else
         {
             // close path
             if (returnDoorOnRelease)

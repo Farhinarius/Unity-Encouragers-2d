@@ -38,7 +38,8 @@ public class Projectile : MonoBehaviour
         }
         else if (other.tag == "Item")
         {
-            other.GetComponent<Destructible>().Damage();
+            if (other.GetComponent<Destructible>() != null)
+                other.GetComponent<Destructible>().Damage();
             Destroy(this.gameObject);
         }
         else if (other.tag == "Wall")
