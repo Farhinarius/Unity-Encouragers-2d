@@ -574,7 +574,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5269dac1bb4ee4cbfedb8c96812edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 0
+  defaultSpeed: 30
+  speedModifier: 1
   interactiveRayLength: {x: 1.5, y: 1.5}
   needDash: 0
   defaultDamage: 1
@@ -609,6 +611,7 @@ MonoBehaviour:
   maxHealth: 100
   healthRegenValue: 0.005
   timeInvincible: 0.5
+  invincibleTimer: 0
 --- !u!114 &419561503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,6 +637,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fourxDamageIsActive: 0
+  speedUpIsActive: 0
+  invincibilityIsActive: 0
 --- !u!1 &5111189112543705342
 GameObject:
   m_ObjectHideFlags: 0

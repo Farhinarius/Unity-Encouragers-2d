@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public static PlayerController staticController;
 
     public float speed;
+    public float defaultSpeed;
+    public float speedModifier;
     Rigidbody2D rigidbody2d;
     private Vector2 lookDirection;
     private Vector2 movement;
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviour
     private void MovementControl()
     {
         Vector2 positionToMove = rigidbody2d.position;
-        positionToMove += movement * speed * Time.fixedDeltaTime;
+        positionToMove += movement * defaultSpeed * speedModifier * Time.fixedDeltaTime;
         rigidbody2d.MovePosition(positionToMove);
     }
 
