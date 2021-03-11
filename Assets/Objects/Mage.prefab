@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 7940991764857992635}
   - component: {fileID: 170039647291700507}
   - component: {fileID: 985256577}
+  - component: {fileID: 3298819080938900898}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Player
@@ -310,9 +311,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5269dac1bb4ee4cbfedb8c96812edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+  defaultSpeed: 0
+  speedModifier: 0
   interactiveRayLength: {x: 1.5, y: 1.5}
   needDash: 0
+  defaultDamage: 0
+  damageModifier: 0
+  damage: 0
 --- !u!114 &170039647291700507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +356,22 @@ MonoBehaviour:
   maxHealth: 100
   healthRegenValue: 0.005
   timeInvincible: 0.5
+  invincibleTimer: 0
+--- !u!114 &3298819080938900898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170039647361208380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02896b4d3e561984ab2655812fe78d3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fourxDamageIsActive: 0
+  speedUpIsActive: 0
+  invincibilityIsActive: 0
 --- !u!1001 &170039648350491517
 PrefabInstance:
   m_ObjectHideFlags: 0
