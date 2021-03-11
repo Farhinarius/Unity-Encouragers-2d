@@ -386,7 +386,11 @@ GameObject:
   - component: {fileID: 7940991764857992635}
   - component: {fileID: 170039647291700507}
   - component: {fileID: 985256577}
+<<<<<<< HEAD
   - component: {fileID: 33579932}
+=======
+  - component: {fileID: 3298819080938900898}
+>>>>>>> 6e58b4681a9c3674477dccc3dd582c64a772b868
   m_Layer: 0
   m_Name: Mage
   m_TagString: Player
@@ -520,7 +524,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5269dac1bb4ee4cbfedb8c96812edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+  defaultSpeed: 0
+  speedModifier: 0
   interactiveRayLength: {x: 1.5, y: 1.5}
   needDash: 0
   defaultDamage: 0
@@ -564,7 +569,12 @@ MonoBehaviour:
   maxHealth: 100
   healthRegenValue: 0.005
   timeInvincible: 0.5
+<<<<<<< HEAD
 --- !u!114 &33579932
+=======
+  invincibleTimer: 0
+--- !u!114 &3298819080938900898
+>>>>>>> 6e58b4681a9c3674477dccc3dd582c64a772b868
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -577,6 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fourxDamageIsActive: 0
+<<<<<<< HEAD
 --- !u!1 &7434197881889885407
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +722,10 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+=======
+  speedUpIsActive: 0
+  invincibilityIsActive: 0
+>>>>>>> 6e58b4681a9c3674477dccc3dd582c64a772b868
 --- !u!1001 &170039648350491517
 PrefabInstance:
   m_ObjectHideFlags: 0
