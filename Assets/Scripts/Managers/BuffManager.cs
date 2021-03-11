@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +13,17 @@ public class BuffManager : MonoBehaviour
     private float speedUp;
     public bool invincibilityIsActive;
     private float invincibility;
+    private Transform damageObject;
+    private Transform speedObject;
+    private Transform invincibilityObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        fourxDamageIsActive = false;
+        damageObject = transform.Find("WarriorOverlayUI/Buff Canvas/damage");
+        speedObject = transform.Find("WarriorOverlayUI/Buff Canvas/speed");
+        invincibilityObject = transform.Find("WarriorOverlayUI/Buff Canvas/invincibility");
+
     }
 
     // Update is called once per frame
@@ -25,17 +31,20 @@ public class BuffManager : MonoBehaviour
     {
         if (fourxDamageIsActive == true)
         {
+            damageObject.GetComponent<BuffTest>().recoveryState = true;
             FourxdamageBuff();
         }
 
         if (speedUpIsActive == true)
         {
+            speedObject.GetComponent<BuffTest>().recoveryState = true;
             SpeedUpBuff();
         }
 
         if (invincibilityIsActive == true)
         {
             InvincibilityBuff();
+            invincibilityObject.GetComponent<BuffTest>().recoveryState = true;
         }
     }
 
@@ -53,6 +62,7 @@ public class BuffManager : MonoBehaviour
             PlayerController.staticController.damageModifier = 1;
             fourxDamage = 0f;
             fourxDamageIsActive = false;
+
         }
     }
 
