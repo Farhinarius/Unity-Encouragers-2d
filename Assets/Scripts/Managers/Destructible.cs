@@ -19,7 +19,8 @@ public class Destructible : MonoBehaviour
         health--;
         if (health <= 0)
         {
-            gameObject.SetActive(false); // or destroy;
+            gameObject.SetActive(false); // Destroy(this.gameObject);
+            TriggerDrop();
             return;
         }
         else
@@ -31,5 +32,14 @@ public class Destructible : MonoBehaviour
     public void ChangeState(int state)
     {
         spriteRenderer.sprite = sprites[state - 1]; // state - 1 because indexation of array begins from 0
+    }
+
+    public void TriggerDrop()
+    {
+        GetComponent<CoinDrop>().InstantiateRandomAmoutOfCoins();
+        if (gameObject.CompareTag("Item"))
+        {
+            GetComponent<HealPotionDrop>().RandomlyInstantiateHealPotion();
+        }
     }
 }

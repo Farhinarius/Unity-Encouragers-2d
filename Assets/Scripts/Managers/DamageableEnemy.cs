@@ -8,11 +8,16 @@ public class DamageableEnemy : MonoBehaviour
     private int health;
     private HealthBar healthBar;
 
+    private Destructible destructibleComponent;
+
     void Start()
     {
         health = maxHealth;
         transform.GetChild(0).gameObject.SetActive(true);   // activate health canvas in gameplay
         healthBar = gameObject.GetComponentInChildren<HealthBar>(); // get health bar image
+        
+        if (gameObject.GetComponent<Destructible>() != null)
+            destructibleComponent = GetComponent<Destructible>();
     }
 
     public void Damage(int damageAmount)
@@ -21,13 +26,13 @@ public class DamageableEnemy : MonoBehaviour
         if (health <= 0)
         {
             gameObject.SetActive(false); //or Destroy(gameObject);
+            destructibleComponent.TriggerDrop();
             return;
         }
         else
         {
             healthBar.SetValue((float) health / maxHealth);
-            if (gameObject.GetComponent<Destructible>() != null) // if destructible
-                GetComponent<Destructible>().ChangeState(health);   // state is health
+            destructibleComponent.ChangeState(health);   // state is health
         }
         // Debug.Log(health);
     }
