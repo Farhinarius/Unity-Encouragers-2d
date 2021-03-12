@@ -24,7 +24,7 @@ public class MageController : MonoBehaviour
     public int maxManaValue;
     private float currentMana;
     private ManaBar manaBar;
-    public float manaRegenValue { get => 0.01f / maxManaValue; }
+    public float manaRegenValue { get => 0.015f / maxManaValue; }
     
     // mana slider costs
     public float manaSpellCost = 2f;

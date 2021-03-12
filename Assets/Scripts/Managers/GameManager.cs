@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
     public void Victory()
     {
         // show victory
-        playerController.transform.Find($"{playerName}OverlayUI/WinText").gameObject.SetActive(true);
+        playerController.transform.Find($"OverlayUI/WinText").gameObject.SetActive(true);
         SceneManager.sceneLoaded -= OnSceneLoad;
         StartCoroutine(LoadNextPlayableSceneWithDelay(3f));
     }

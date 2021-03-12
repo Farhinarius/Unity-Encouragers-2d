@@ -26,13 +26,15 @@ public class DamageableEnemy : MonoBehaviour
         if (health <= 0)
         {
             gameObject.SetActive(false); //or Destroy(gameObject);
-            destructibleComponent.TriggerDrop();
+            if (destructibleComponent != null)
+                destructibleComponent.TriggerDrop();
             return;
         }
         else
         {
             healthBar.SetValue((float) health / maxHealth);
-            destructibleComponent.ChangeState(health);   // state is health
+            if (destructibleComponent != null)
+                destructibleComponent.ChangeState(health);   // state is health
         }
         // Debug.Log(health);
     }
