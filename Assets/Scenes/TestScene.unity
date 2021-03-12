@@ -1334,6 +1334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mage
       objectReference: {fileID: 0}
+    - target: {fileID: 170039647361208380, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 170039647361208382, guid: 3bb464e8d60f70c43b57330f00871340, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1491,6 +1495,10 @@ PrefabInstance:
     - target: {fileID: 4950174257142681790, guid: 119832fe41255c846a88a3be8a87504c, type: 3}
       propertyPath: m_Name
       value: Warrior
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950174257142681790, guid: 119832fe41255c846a88a3be8a87504c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 119832fe41255c846a88a3be8a87504c, type: 3}
