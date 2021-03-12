@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e170118cb8ac63d458d7eb086f738f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 10
+  duration: 7
   recoveryState: 0
   fillImage: {fileID: 984096225}
 --- !u!1 &1485093530
@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e170118cb8ac63d458d7eb086f738f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 7
+  duration: 8
   recoveryState: 0
   fillImage: {fileID: 1578861836}
 --- !u!1 &1431740828982908943
