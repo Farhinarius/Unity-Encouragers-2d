@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e170118cb8ac63d458d7eb086f738f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 10
+  duration: 7
   recoveryState: 0
   fillImage: {fileID: 984096225}
 --- !u!1 &1485093530
@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e170118cb8ac63d458d7eb086f738f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 7
+  duration: 8
   recoveryState: 0
   fillImage: {fileID: 1578861836}
 --- !u!1 &1431740828982908943
@@ -1109,7 +1109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5081764932960694864, guid: 342cecbcf174b894da99bc4ae4c4a14a, type: 3}
       propertyPath: m_Name
-      value: WarriorOverlayUI
+      value: OverlayUI
       objectReference: {fileID: 0}
     - target: {fileID: 5081764932960694865, guid: 342cecbcf174b894da99bc4ae4c4a14a, type: 3}
       propertyPath: m_LocalPosition.x
