@@ -819,7 +819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4950174257142681788
 Transform:
   m_ObjectHideFlags: 0
@@ -1109,7 +1109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5081764932960694864, guid: 342cecbcf174b894da99bc4ae4c4a14a, type: 3}
       propertyPath: m_Name
-      value: WarriorOverlayUI
+      value: OverlayUI
       objectReference: {fileID: 0}
     - target: {fileID: 5081764932960694865, guid: 342cecbcf174b894da99bc4ae4c4a14a, type: 3}
       propertyPath: m_LocalPosition.x

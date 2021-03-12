@@ -20,9 +20,9 @@ public class BuffManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        damageObject = transform.Find("WarriorOverlayUI/Buff Canvas/damage");
-        speedObject = transform.Find("WarriorOverlayUI/Buff Canvas/speed");
-        invincibilityObject = transform.Find("WarriorOverlayUI/Buff Canvas/invincibility");
+        damageObject = transform.Find("OverlayUI/Buff Canvas/damage");
+        speedObject = transform.Find("OverlayUI/Buff Canvas/speed");
+        invincibilityObject = transform.Find("OverlayUI/Buff Canvas/invincibility");
 
     }
 

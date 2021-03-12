@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
     private void RefreshPlayerData()
     {
         playerController = PlayerController.staticController;
-        playerUI = playerController.transform.Find($"{playerName}OverlayUI").gameObject;
+        playerUI = playerController.transform.Find($"OverlayUI").gameObject;
     }
 
     private void ShowLevelAtUI()
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
     public void Victory()
     {
         // show victory
-        playerController.transform.Find($"{playerName}OverlayUI/WinText").gameObject.SetActive(true);
+        playerController.transform.Find($"OverlayUI/WinText").gameObject.SetActive(true);
         SceneManager.sceneLoaded -= OnSceneLoad;
         StartCoroutine(LoadNextPlayableSceneWithDelay(3f));
     }
