@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AffectedObject: {fileID: 0}
-  returnDoorOnRelease: 0
+  returnDoorOnRelease: 1
   endPosition: {x: -20, y: 68.6, z: 0}
   speed: 20
 --- !u!1 &2285978849869125923
